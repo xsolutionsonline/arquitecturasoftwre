@@ -1,0 +1,80 @@
+<router-outlet></router-outlet>
+
+<div class="card" style="width: 80%;align-items: center;margin: 45px;padding-bottom: 20px;">
+  
+<form (ngSubmit)="OnSubmit()" [formGroup]="contactForm">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Nombres</label>
+    <input type="text" class="form-control" id="nombres" aria-describedby="nombres"  formControlName="nombres">
+    <small id="Nombres" class="form-text text-muted">Ingrese sus nombres completos.</small>
+  </div>
+  <div class="form-group">
+    <label for="apellidos">Apellidos</label>
+    <input type="text" class="form-control" id="apellidos"  formControlName="apellidos">
+    <small id="apellidos" class="form-text text-muted">Ingrese sus apellido  completos.</small>
+  </div>
+  <div class="form-group">
+    <label for="tipodoc">Tipo documento</label>
+    <input type="text" class="form-control" id="tipodoc" aria-describedby="tipodoc"  formControlName="tipodoc">
+    <small id="tipodoc" class="form-text text-muted">si es ciudadano ingrese cc si es extranjero ingrese ce</small>
+  </div>
+
+  <div class="form-group">
+    <label for="numerodoc">Identificacion</label>
+    <input type="text" class="form-control" id="numerodoc" aria-describedby="numerodoc"  formControlName="numerodoc">
+    <small id="numerodoc" class="form-text text-muted">Ingrese su numero de identidad.</small>
+  </div>
+
+  <div class="form-group">
+    <label for="direccion">direccion</label>
+    <input type="text" class="form-control" id="direccion" aria-describedby="direccion" formControlName="direccion">
+    <small id="direccion" class="form-text text-muted">ingrese su direccion de residencia.</small>
+  </div>
+
+  <div class="form-group">
+    <label for="telefono">telefono</label>
+    <input type="text" class="form-control" id="telefono" aria-describedby="telefono" formControlName="telefono">
+    <small id="telefono" class="form-text text-muted">ingrese su telefono de contacto.</small>
+  </div>
+
+  <div class="form-group">
+    <label for="ocupacion">ocupacion</label>
+    <input type="text" class="form-control" id="ocupacion" aria-describedby="ocupacion" formControlName="ocupacion">
+    <small id="ocupacion" class="form-text text-muted">ingrese su profesion.</small>
+  </div>
+  <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nombres</th>
+      <th scope="col">Apellidos</th>
+      <th scope="col">Tipo documento</th>
+      <th scope="col">Numero de documento</th>
+      <th scope="col">telefono</th>
+      <th scope="col">ocupacion</th>
+      <th scope="col">direccion</th>
+      <th scope="col">acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <h1 *ngIf="!isResultLoaded">Loading.................</h1>
+    <tr *ngFor="let cliente of clientes">
+
+      <td>{{cliente.nombres  | uppercase}}</td>
+      <td>{{cliente.apellidos }}</td>
+      <td>{{cliente.tipodoc}}</td>
+      <td>{{cliente.numerodoc}}</td>
+      <td>{{cliente.telefono}}</td>
+      <td>{{cliente.ocupacion}}</td>
+      <td>{{cliente.direccion}}</td>
+      <td>
+        <button type="button" class="btn btn-success" (click)="onEdit(cliente)">Editar</button>
+        <button type="button" class="btn btn-danger" (click)="onDelete(cliente.id)">Borrar</button>
+      </td>
+
+    </tr>  
+  </tbody>
+</table>
+</div>
